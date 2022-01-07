@@ -1,0 +1,824 @@
+@import url('https://fonts.googleapis.com/css2?family=Fruktur&family=Open+Sans+Condensed:wght@300&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,500;1,600;1,700;1,800&family=Roboto+Condensed:ital,wght@0,300;0,400;1,300;1,400&family=Roboto:ital,wght@0,100;0,500;1,100;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Licorice&family=Roboto:ital,wght@0,100;0,500;1,100;1,300&display=swap');
+:root {
+    --primaryColor: #9cc0ec;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes dishList {
+    from {
+        opacity: 0.5;
+        transform: scale(0.7);
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.up {
+    display: block;
+    text-align: center;
+    transform: rotate(-90deg);
+    font-size: 30px;
+    margin-top: 10px;
+    animation: up .5s infinite;
+}
+
+.up a {
+    text-decoration: none;
+    color: #fff;
+}
+
+@keyframes up {
+    0% {
+        transform: translateY(5px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(5px);
+    }
+}
+
+.maindishes,
+.desserts,
+.beverages,
+.salad,
+.appertizers {
+    display: none !important;
+}
+
+.maindishes.active,
+.desserts.active,
+.beverages.active,
+.salad.active,
+.appertizers.active {
+    display: flex !important;
+}
+
+.button.active {
+    background-color: #fff;
+    color: var(--primaryColor);
+    border: 1px solid #fff;
+    color: #0f58b1;
+}
+
+.button.active:hover {
+    color: var(--primaryColor);
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: var(--primaryColor);
+    cursor: pointer;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.button::before,
+.button::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 1px solid var(--primaryColor);
+    transition: all .3s ease;
+}
+
+.button:hover::after {
+    transform: translate(3px, 3px);
+    border: 1px solid #fff;
+}
+
+.button:hover::before {
+    border: 1px solid #fff;
+    transform: translate(-3px, -3px);
+}
+
+.button:hover {
+    color: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primaryColor);
+    width: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+header {
+    height: 100px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    transition: all .3s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-navbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-weight: 500;
+}
+
+.header-navbar ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.header-navbar ul li {
+    margin: 0 25px;
+}
+
+.header-navbar ul li a {
+    color: var(--primaryColor);
+    letter-spacing: 3px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header-navbar ul li a span {
+    position: absolute;
+    height: 2px;
+    width: 0%;
+    background-color: #9cc0ec;
+    bottom: -10px;
+    border-radius: 5px;
+    transition: all .3s ease;
+}
+
+.header-navbar ul {
+    transition: all .3s ease;
+}
+
+.navbar-item:hover .span-header {
+    width: 100%;
+}
+
+.image-slide,
+.slide {
+    width: 100%;
+    height: 100vh;
+}
+
+.image-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-slide {
+    position: relative;
+}
+
+.image-slide div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.image-slide div i {
+    margin-top: 50px;
+    font-size: 70px;
+    font-family: 'Licorice', cursive;
+    color: rgb(235, 235, 235);
+}
+
+.image-slide div i span {
+    color: var(--primaryColor);
+}
+
+.image-slide div p {
+    color: rgb(235, 235, 235);
+    font-weight: 200;
+    width: 50%;
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.button-slide {
+    margin-top: 40px;
+}
+
+.menu {
+    width: 100%;
+    padding: 100px 10% 50px;
+    height: auto;
+    transition: all .5s ease;
+}
+
+.contact-header,
+.offer-header,
+.story-header,
+.menu-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 4px;
+    font-family: 'Licorice', cursive;
+}
+
+.contact i,
+.offer-header i,
+.story-header i,
+.menu-header i {
+    font-size: 70px;
+    margin: 0 10px;
+    color: #fff;
+}
+
+.contact-header span,
+.offer-header span,
+.story-header span,
+.menu-header span {
+    border-radius: 5px;
+    height: 1px;
+    background-color: #fff;
+    flex: 1;
+}
+
+.menu-text {
+    font-weight: 100;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    letter-spacing: 2px;
+    margin-top: 50px;
+}
+
+.btn-menu {
+    color: #fff;
+}
+
+.btn-menu::after {
+    content: "";
+    border: 1px solid #fff;
+}
+
+.menu-tab {
+    margin-top: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.menu-tab-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.maindishes,
+.desserts,
+.beverages,
+.salad,
+.appertizers {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    transition: all .3s linear;
+}
+
+.dish-item {
+    width: 200px;
+    height: auto;
+    margin: 30px;
+    animation: dishList .3s ease;
+}
+
+.dish-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+
+.dish-image:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    transform: translateY(-10px);
+}
+
+.dish-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.price-dish {
+    font-size: 25px;
+    font-family: 'Licorice', cursive;
+    margin-top: 5px;
+    color: #fff;
+}
+
+.name-dish {
+    font-weight: 600;
+    color: #0f58b1;
+    font-size: 20px;
+}
+
+.about-dish {
+    margin: 0;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 1;
+    color: #fff;
+    line-height: 30px;
+}
+
+.btn-order {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #0f58b1;
+    border: 1px solid #fff;
+    background-color: #fff;
+    transition: all .2s linear;
+}
+
+.btn-order:hover {
+    background-color: var(--primaryColor);
+    color: #fff;
+}
+
+.story {
+    width: 100%;
+    height: 100vh;
+}
+
+.story-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story-header {
+    padding: 0px 10% 50px;
+}
+
+.story-text {
+    width: 50%;
+    text-align: center;
+    color: #fff;
+    line-height: 25px;
+    letter-spacing: 3px;
+}
+
+.cover-story {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.person {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 250px;
+    height: auto;
+    margin: 0 30px;
+    line-height: 25px;
+    letter-spacing: 2px;
+    font-weight: 1;
+}
+
+.person img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.office {
+    margin: 10px 0;
+}
+
+.name-person {
+    font-size: 16px;
+}
+
+.info {
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.offer {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 100px 10% 50px;
+}
+
+.offer-items {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin: 100px 0;
+}
+
+.offer-item {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.offer-item img {
+    width: 70px;
+    margin: 30px;
+}
+
+.offer-item i {
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.offer-header span {
+    background-color: #000;
+}
+
+.offer-header i {
+    color: #000;
+}
+
+.btn-offer {
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    background-color: #fff;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all .3s ease;
+    position: relative;
+}
+
+.btn-offer::before,
+.btn-offer::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #000;
+    transition: all .3s linear;
+}
+
+.btn-offer:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-offer:hover::after {
+    transform: translate(5px, 5px);
+}
+
+.btn-offer:hover::before {
+    transform: translate(-5px, -5px);
+}
+
+.contact {
+    padding: 50px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title-contact {
+    width: fit-content;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 1;
+    color: #fff;
+    position: relative;
+}
+
+.title-contact::before {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+}
+
+.contact-info {
+    width: 80%;
+    margin-top: 100px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.social h3,
+.time h3,
+.address h3 {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 100;
+    margin-bottom: 10px;
+}
+
+.social h4,
+.time h4,
+.address h4 {
+    font-weight: 100;
+    font-size: 16px;
+    color: #fff;
+    line-height: 30px;
+    flex: 1;
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 50px;
+    font-weight: 100;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.footer-text span {
+    font-weight: 500;
+}
+
+.footer-text a {
+    color: #fff;
+}
+
+.end-contact {
+    width: 50%;
+    height: 1px;
+    background-color: #fff;
+    margin: 30px 0;
+}
+
+.end-contact-text {
+    font-size: 16px;
+    font-weight: 1;
+    color: #fff;
+}
+
+.member button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    header {
+        height: 50px;
+    }
+    .navbar-item:nth-child(1),
+    .navbar-item:nth-child(2),
+    .navbar-item:nth-child(4),
+    .navbar-item:nth-child(5) {
+        display: none;
+    }
+    .logo img {
+        width: 70%;
+    }
+    .image-slide div i {
+        font-size: 28px;
+    }
+    .image-slide div p {
+        font-size: 15px;
+        width: 90%;
+    }
+    .image-slide div {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .button-slide {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+    .menu {
+        padding: 70px 10px;
+    }
+    .menu-header i {
+        font-size: 30px;
+    }
+    .menu-text {
+        font-size: 14px;
+        margin-top: 20px;
+        padding: 0;
+    }
+    .menu-tab {
+        margin-top: 20px;
+    }
+    .menu-tab-btn {
+        width: 100%;
+    }
+    .btn-menu {
+        font-size: 10px;
+        padding: 5px;
+        border-radius: 6px;
+    }
+    .btn-menu::after,
+    .btn-menu::before {
+        display: none;
+    }
+    .dish-item {
+        width: 90%;
+        margin: 10px 0 40px 0;
+        padding: 0;
+    }
+    .dish-image {
+        height: 200px;
+    }
+    .price-dish {
+        font-size: 20px;
+    }
+    .name-dish {
+        font-size: 15px;
+    }
+    .about-dish {
+        font-size: 15px;
+    }
+    .story {
+        padding-top: 0;
+        height: 220vh;
+    }
+    .story-header {
+        padding-bottom: 0;
+    }
+    .cover-story {
+        justify-content: flex-start;
+        padding-top: 40px;
+    }
+    .story-text {
+        font-weight: 100;
+        font-size: 12px;
+        width: 100%;
+        display: none;
+    }
+    .story-header i {
+        font-size: 30px;
+    }
+    .offer-item {
+        width: 100%;
+    }
+    .member button {
+        color: #fff;
+        font-weight: 1;
+        position: absolute;
+        outline: none;
+        border: none;
+        color: #fff;
+        background-color: transparent;
+        padding: 10px;
+        display: flex;
+    }
+    @keyframes right {
+        0% {
+            transform: translateX(3px);
+        }
+        50% {
+            transform: translateX(-3px);
+        }
+        100% {
+            transform: translateX(3px);
+        }
+    }
+    @keyframes left {
+        0% {
+            transform: translateX(-3px);
+        }
+        50% {
+            transform: translateX(3px);
+        }
+        100% {
+            transform: translateX(-3px);
+        }
+    }
+    .member button:first-child {
+        left: 10px;
+        animation: left .5s infinite;
+    }
+    .member button:last-child {
+        right: 10px;
+        animation: right .5s infinite;
+    }
+    .offer-items {
+        margin-top: 0;
+    }
+    .contact {
+        padding: 0;
+    }
+    .contact-header {
+        padding: 0 10%;
+    }
+    .contact-header i {
+        font-size: 30px;
+    }
+    .title-contact {
+        font-size: 16px;
+        padding: 0;
+        width: 100%;
+        margin-top: 15px;
+    }
+    .contact-info {
+        flex-direction: column;
+        margin-top: 50px;
+    }
+    .footer-text {
+        display: none;
+    }
+    .end-contact-text {
+        padding-bottom: 20px;
+    }
+    .member {
+        flex-direction: column;
+    }
+    .person {
+        margin: 20px 0;
+    }
+}
